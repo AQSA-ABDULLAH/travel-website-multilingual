@@ -33,7 +33,7 @@ export default function Home() {
         <BookTrip />
       </div>
       <div className="2xl:pr-40 lg:pr-32 pr-6">
-        <Testimonials />
+      <Testimonials />
         <BrandLogos />
         <SubscribeSection />
         <Footer />

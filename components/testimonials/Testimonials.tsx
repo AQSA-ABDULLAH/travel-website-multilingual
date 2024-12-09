@@ -1,35 +1,11 @@
 "use client";
 import { useState } from "react";
 import TestimonialCard from "./Card";
+import { useTranslations } from "next-intl";
 
-const testimonials = [
-  {
-    image: "/assest/Testimonials/Image.png",
-    des: "“On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”",
-    writer: "Mike Taylor",
-    location: "Lahore, Pakistan",
-    name: "Chris Thomas",
-    pos: "CEO of Red Button",
-  },
-  {
-    image: "/assest/Testimonials/Image.png",
-    des: "“On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”",
-    writer: "John Doe",
-    location: "New York, USA",
-    name: "Emily Watson",
-    pos: "CTO of BlueSky",
-  },
-  {
-    image: "/assest/Testimonials/Image.png",
-    des: "“Next portion of the On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”",
-    writer: "John Doe",
-    location: "New York, USA",
-    name: "The Emily Watson",
-    pos: "CTO of BlueSky",
-  },
-];
+const Testimonials: React.FC = () => {
+  const t = useTranslations();
 
-export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nextSlide = () => {
@@ -42,26 +18,54 @@ export default function Testimonials() {
     );
   };
 
+  const testimonials = [
+    {
+      image: "/assest/Testimonials/Image.png",
+      des: t("testimonials.testimonials1.des"),
+      writer: t("testimonials.testimonials1.writer"),
+      location: t("testimonials.testimonials1.location"),
+      name: t("testimonials.testimonials1.name"),
+      pos: t("testimonials.testimonials1.pos"),
+    },
+    {
+      image: "/assest/Testimonials/Image.png",
+      des: t("testimonials.testimonials2.des"),
+      writer: t("testimonials.testimonials2.writer"),
+      location: t("testimonials.testimonials2.location"),
+      name: t("testimonials.testimonials2.name"),
+      pos: t("testimonials.testimonials2.pos"),
+    },
+    {
+      image: "/assest/Testimonials/Image.png",
+      des: t("testimonials.testimonials3.des"),
+      writer: t("testimonials.testimonials3.writer"),
+      location: t("testimonials.testimonials3.location"),
+      name: t("testimonials.testimonials3.name"),
+      pos: t("testimonials.testimonials3.pos"),
+    },
+  ];
+
   return (
     <div className="py-16">
       <div className="max-w-screen flex flex-col lg:flex-row items-center justify-between">
         {/* Left Section - Title and Heading */}
         <section className="lg:w-[40%]">
           <h3 className="text-[18px] 2xl:text-[24px] text-[#5E6282] font-poppins font-semibold mb-2 tracking-wider">
-            TESTIMONIALS
+            {t("testimonials.subtitle")}
           </h3>
           <h2 className="text-[38px] sm:text-[49px] lg:text-[53px] 2xl:text-[63px] desktop:text-[74px] text-[#14183E] font-volkhov font-bold mb-6">
-            What People Say About Us
+            {t("testimonials.title")}
           </h2>
-          
+
           {/* Slide Indicators */}
           <div className="flex mt-6 space-x-2">
             {testimonials.map((_, index) => (
               <span
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`w-3 h-3 cursor-pointer rounded-full ${index === activeIndex ? "bg-black" : "bg-gray-300"
-                  }`}
+                className={`w-3 h-3 cursor-pointer rounded-full ${
+                  index === activeIndex ? "bg-black" : "bg-gray-300"
+                }`}
               ></span>
             ))}
           </div>
@@ -111,4 +115,6 @@ export default function Testimonials() {
       </div>
     </div>
   );
-}
+};
+
+export default Testimonials;
