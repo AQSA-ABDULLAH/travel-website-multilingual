@@ -61,7 +61,7 @@ const Navbar = ({ locale }: { locale: string }) => {
           >
             <option value="en">EN</option>
             <option value="fr">CH</option>
-            <option value="es">ES</option>
+            <option value="ur">UR</option>
           </select>
         </div>
 

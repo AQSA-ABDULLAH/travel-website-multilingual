@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center sm:items-start flex-wrap justify-center md:justify-between gap-10">
 
           {/* Left Section */}
-          <div className="max-w-[220px] 2xl:max-w-[290px] desktop:max-w-[350px]">
+          <div className="max-w-[200px] 2xl:max-w-[290px] desktop:max-w-[350px]">
             <h1 className="text-[54px] sm:text-[46px] 2xl:text-[44px] desktop:text-[60px] text-[#181E4B] font-bold tracking-wider mt-[-9px] pb-4">Jadoo.</h1>
             <p className="text-[18px] sm:text-[12px] 2xl:text-[13px] desktop:text-[20px] text-[#5E6282] font-medium">
               {t("description")}
@@ -67,7 +67,7 @@ export default function Footer() {
                 <img src="/assest/footer/Social2.png" className="2xl:w-[85px] desktop:w-[120px]" />
               </div>
             </div>
-            <h3 className="text-[22px] desktop:text-[28px] text-[#5E6282] font-medium tracking-wide mb-5">
+            <h3 className="text-[20px] desktop:text-[28px] text-[#5E6282] font-medium tracking-wide mb-5">
               {t("socialMedia.heading")}
             </h3>
             <div className="flex gap-4">
@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="text-[18px] 2xl:text-[14px] desktop:text-[30px] text-[#5E6282] mt-20 text-center">
+        <div className="text-[18px] 2xl:text-[13px] desktop:text-[30px] text-[#5E6282] mt-20 text-center">
           {t("copyright")}
         </div>
       </div>
