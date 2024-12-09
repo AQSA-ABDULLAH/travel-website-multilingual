@@ -1,3 +1,4 @@
+
 import Hero from "@/components/hero/Hero";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
@@ -17,6 +18,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <div className="overflow-hidden">
             <div className="2xl:pl-40 lg:pl-32 pl-6">
+              {/* <Hero locale={locale} /> */}
               <Hero locale={locale} />
               {children}
             </div>

@@ -95,5 +95,36 @@
     "heading": "Subscribe to get information, latest news and other interesting offers about Cobham",
     "placeholder": "Your Email",
     "button": "Subscribe"
+  },
+  "footer": {
+    "description": "Book your trip in minutes, get full control for much longer.",
+    "company": {
+      "title": "Company",
+      "links": {
+        "about": "About",
+        "careers": "Careers",
+        "mobile": "Mobile"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "links": {
+        "helpFaq": "Help/FAQ",
+        "press": "Press",
+        "affiliates": "Affiliates"
+      }
+    },
+    "more": {
+      "title": "More",
+      "links": {
+        "airlineFees": "Airline Fees",
+        "airline": "Airline",
+        "lowFareTips": "Low Fare Tips"
+      }
+    },
+    "socialMedia": {
+      "heading": " Discover our app"
+    },
+    "copyright": "All rights reserved @jadoo.co"
   }
 }

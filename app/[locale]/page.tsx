@@ -1,6 +1,7 @@
 import BookTrip from "@/components/book-trip/BookTrip";
 import BrandLogos from "@/components/brand-logo/BrandLogo";
 import Destinations from "@/components/destinations/Destinations";
+import Footer from "@/components/footer/Footer";
 import ServicesSection from "@/components/services/Services";
 import SubscribeSection from "@/components/subscribe-section/SubscribeSection";
 import Testimonials from "@/components/testimonials/Testimonials";
@@ -35,6 +36,7 @@ export default function Home() {
         <Testimonials />
         <BrandLogos />
         <SubscribeSection />
+        <Footer />
       </div>
     </div>
 
