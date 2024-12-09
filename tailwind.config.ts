@@ -13,8 +13,21 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)"],
-        mono: ["var(--font-geist-mono)"],
+        volkhov: ['Volkhov', 'serif'],
+        poppins: ['Poppins']
+      },
+      lineHeight: {
+        'extra-loose': '8.4rem',
+        'loose': '5.4rem',
+        'large-loose': '7rem',
+        'large': '3.4rem'
+      },
+      borderRadius: {
+        default: '0.25rem',
+        large: '8rem'
+      },
+      screens: {
+        'desktop': '1920px'
       },
     },
   },

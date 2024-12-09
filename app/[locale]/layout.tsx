@@ -1,8 +1,7 @@
-
+import Hero from "@/components/hero/Hero";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import Header from "@/components/Navbar";
 
 export default async function RootLayout({
   children,
@@ -16,9 +15,11 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <div className="mx-auto max-w-4xl h-screen">
-            <Header locale={locale} />
-            {children}
+          <div className="overflow-hidden">
+            <div className="2xl:pl-40 lg:pl-32 pl-6">
+              <Hero locale={locale} />
+              {children}
+            </div>
           </div>
         </NextIntlClientProvider>
       </body>
