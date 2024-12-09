@@ -13,8 +13,82 @@
     "paragraph": "Built Wicket longer admire do barton vanity itself do it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the.",
     "button1": "Find out more",
     "button2": "Play Demo"
+  },
+  "Services": {
+    "category": "Category",
+    "title": "We Offer Best Services",
+    "service1": {
+      "title": "Calculated Weather",
+      "description": "Built Wicket longer admire do barton vanity itself do it before burner."
+    },
+    "service2": {
+      "title": "Best Flights",
+      "description": "Engrossed listening. Park gate sell they west hard for the."
+    },
+    "service3": {
+      "title": "Local Events",
+      "description": "Barton vanity itself do it. Preferred to men it engrossed listening."
+    },
+    "service4": {
+      "title": "Customization",
+      "description": "We deliver outsourced aviation services for military customers."
+    }
+  },
+  "Destinations": {
+    "destination1": {
+      "title": "Rome, Italy",
+      "duration": "10 Days Trip"
+    },
+    "destination2": {
+      "title": "London, UK",
+      "duration": "12 Days Trip"
+    },
+    "destination3": {
+      "title": "Full Europe",
+      "duration": "28 Days Trip"
+    }
+  },
+  "BookTrip": {
+    "subtitle": "Easy and Fast",
+    "title": "Book Your Next Trip In 3 Easy Steps",
+    "step1": {
+      "title": "Choose Destination",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus."
+    },
+    "step2": {
+      "title": "Make Payment",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus."
+    },
+    "step3": {
+      "title": "Reach Airport on Selected Date",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus."
+    },
+    "imageAlt": "Trip to Greece"
+  },
+  "testimonials": {
+    "subtitle": "TESTIMONIALS",
+    "title": "What People Say About Us",
+    "testimonials1": {
+      "des": "“On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”",
+      "writer": "John Doe",
+      "location": "New York, USA",
+      "name": "Emily Watson",
+      "pos": "CTO of BlueSky"
+    },
+    "testimonials2": {
+      "des": "“On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”",
+      "writer": "John Doe",
+      "location": "New York, USA",
+      "name": "Emily Watson",
+      "pos": "CTO of BlueSky"
+    },
+    "testimonials3": {
+      "des": "“On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”",
+      "writer": "John Doe",
+      "location": "New York, USA",
+      "name": "Emily Watson",
+      "pos": "CTO of BlueSky"
+    },
+    "imageAlt": "Trip to Greece"
   }
 }
-
-
-
