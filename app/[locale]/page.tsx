@@ -2,6 +2,7 @@ import BookTrip from "@/components/book-trip/BookTrip";
 import BrandLogos from "@/components/brand-logo/BrandLogo";
 import Destinations from "@/components/destinations/Destinations";
 import ServicesSection from "@/components/services/Services";
+import SubscribeSection from "@/components/subscribe-section/SubscribeSection";
 import Testimonials from "@/components/testimonials/Testimonials";
 import { useTranslations } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -33,6 +34,7 @@ export default function Home() {
       <div className="2xl:pr-40 lg:pr-32 pr-6">
         <Testimonials />
         <BrandLogos />
+        <SubscribeSection />
       </div>
     </div>
 

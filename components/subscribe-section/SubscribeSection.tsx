@@ -1,10 +1,13 @@
+import React from "react";
+import { useTranslations } from "next-intl";
 export default function SubscribeSection() {
+  const t = useTranslations("Subscribe");
   return (
     <section>
       <div className="bg-purple-50 rounded-tl-large rounded-b-2xl mt-24 py-24 relative">
         <div className="px-8 lg:px-32 flex flex-col items-center text-center">
           <h1 className="text-[20px] sm:text-[24px] lg:text-[32px] 2xl:text-[33px] dektop:text-[54px] 2xl:w-[859px] leading-8 md:leading-large text-[#5E6282] font-bold mb-16 2xl:mb-32">
-            Subscribe to get information, latest news and other interesting offers about Cobham
+          {t("heading")}
           </h1>
 
           <div className="flex flex-col gap-10 lg:flex-row justify-center items-center space-x-4">
@@ -16,13 +19,13 @@ export default function SubscribeSection() {
         />
               <input
                 type="email"
-                placeholder="Your email"
+                placeholder= {t("placeholder")}
                 className="w-full 2xl:w-[400px] px-4
               py-2 text-gray-600 focus:outline-none 2xl:text-[14px]"
               />
             </div>
             <button className="bg-orange-500 2xl:text-[17px] text-white px-8 py-4 rounded-lg hover:bg-orange-600">
-              Subscribe
+            {t("button")}
             </button>
           </div>
         </div>

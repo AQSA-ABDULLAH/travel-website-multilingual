@@ -90,5 +90,10 @@
       "pos": "CTO of BlueSky"
     },
     "imageAlt": "Trip to Greece"
+  },
+  "Subscribe": {
+    "heading": "Subscribe to get information, latest news and other interesting offers about Cobham",
+    "placeholder": "Your Email",
+    "button": "Subscribe"
   }
 }
