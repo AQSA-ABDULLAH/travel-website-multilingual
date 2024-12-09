@@ -1,19 +1,20 @@
 {
   "NavbarLinks": {
-    "home": "Home",
-    "homeTitle": "Home page",
-    "about": "About",
-    "aboutTitle": "About page",
-    "profile": "Profile",
-    "profileTitle": "Profile page"
+    "destinations": "Destinations",
+    "hotels": "Hotels",
+    "flights": "Flights",
+    "bookings": "Bookings",
+    "login": "Login",
+    "signup": "Sign up"
   },
-  "HomePage": {
-    "title": "Landing page"
-  },
-  "AboutPage": {
-    "title": "About"
-  },
-  "ProfilePage": {
-    "title": "Profile"
+  "Main": {
+    "heading": "Best Destinations around the world",
+    "title": "Travel, enjoy and live a new and full life",
+    "paragraph": "Built Wicket longer admire do barton vanity itself do it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the.",
+    "button1": "Find out more",
+    "button2": "Play Demo"
   }
 }
+
+
+

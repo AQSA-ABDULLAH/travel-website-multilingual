@@ -39,14 +39,16 @@ const Navbar = ({ locale }: { locale: string }) => {
       {/* Navigation Links */}
       <section className="flex justify-between items-center gap-6">
         <nav className="text-[18px] 2xl:text-[17px] text-[#212832] font-Google Sans font-medium hidden md:flex space-x-16">
-          <Link href={`/${locale}/`} className="hover:text-gray-600">{t("home")}</Link>
-          <Link href={`/${locale}/about`} className="hover:text-gray-600">{t("about")}</Link>
-          <Link href={`/${locale}/about/profile`} className="hover:text-gray-600">{t("profile")}</Link>
+          <a href="#">{t("destinations")}</a>
+          <a href="#">{t("hotels")}</a>
+          <a href="#">{t("flights")}</a>
+          <a href="#">{t("bookings")}</a>
+          <a href="#">{t("login")}</a>
         </nav>
 
         <div className="hidden md:block">
           <button className="2xl:text-[17px] border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white px-6 py-2 rounded-lg">
-            Sign up
+          {t("signup")}
           </button>
         </div>
 
@@ -58,7 +60,7 @@ const Navbar = ({ locale }: { locale: string }) => {
             className="bg-transparent text-gray-800 rounded-md"
           >
             <option value="en">EN</option>
-            <option value="fr">FR</option>
+            <option value="fr">CH</option>
             <option value="es">ES</option>
           </select>
         </div>

@@ -1,19 +1,19 @@
 {
   "NavbarLinks": {
-    "home": "Accueil",
-    "homeTitle": "Page d'accueil",
-    "about": "À propos",
-    "aboutTitle": "Page d'à propos",
-    "profile": "Profil",
-    "profileTitle": "Page de profil"
+    "destinations": "目的地",
+    "hotels": "酒店",
+    "flights": "航班",
+    "bookings": "预订",
+    "login": "登录",
+    "signup": "注册"
   },
-  "HomePage": {
-    "title": "Page d'atterrissage"
-  },
-  "AboutPage": {
-    "title": "À propos"
-  },
-  "ProfilePage": {
-    "title": "Profil"
+  "Main": {
+    "heading": "世界最佳目的地",
+    "title": "旅行，享受并活出全新充实的生活",
+    "paragraph": "建造维基更长时间的钦佩，巴顿虚荣自己去做。更喜欢运动员沉浸在聆听中。公园大门卖他们西方努力。",
+    "button1": "了解更多",
+    "button2": "播放演示"
   }
 }
+
+
