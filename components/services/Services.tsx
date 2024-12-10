@@ -46,7 +46,7 @@ const ServicesSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-10 mr-4 sm:mr-0 relative xl:min-h-[560px]">
+        <section className="py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] animate-fadeInTop">
             {/* Section Header */}
             <div className="text-center mb-12">
                 <p className="text-[22px] lg:text-[19px] 2xl:text-[18px] text-[#5E6282] font-poppins font-semibold mb-3">
@@ -63,7 +63,7 @@ const ServicesSection: React.FC = () => {
                     <div
                         key={index}
                         className="w-[280px] md:w-[220px] lg:w-[220px] 2xl:min-w-[190px] desktop:w-[250px] desktop:hover:w-[260px] flex flex-col 
-                        items-center relative group"
+                        items-center relative group animate-fadeUp"
                     >
                         <section className="z-10 hover:bg-white rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:p-2 relative">
                             {/* Background image with dynamic position */}
@@ -116,6 +116,7 @@ const ServicesSection: React.FC = () => {
 };
 
 export default ServicesSection;
+
 
 
 
