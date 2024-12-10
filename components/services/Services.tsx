@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 interface Service {
@@ -13,40 +16,75 @@ interface Service {
 
 const ServicesSection: React.FC = () => {
     const t = useTranslations(); // Fetch translations
+    const [inView, setInView] = useState(false); // State to track if section is in view
+    const sectionRef = useRef<HTMLDivElement>(null); // Reference to the section element
 
     const services: Service[] = [
         {
             title: t("Services.service1.title"),
-            description:  t("Services.service1.description"),
+            description: t("Services.service1.description"),
             icon: "/assest/services/satellite-dish.png",
             bgImage: "/assest/services/Rectangle 157.png",
             bgPosition: { top: "2", left: "7" }
         },
         {
-            title: t("Services.service2.title"), 
-            description:  t("Services.service2.description"),
+            title: t("Services.service2.title"),
+            description: t("Services.service2.description"),
             icon: "/assest/services/plane.png",
             bgImage: "/assest/services/Rectangle 158.png",
             bgPosition: { top: "0", left: "4" }
         },
         {
-            title: t("Services.service3.title"), 
-            description:  t("Services.service3.description"),
+            title: t("Services.service3.title"),
+            description: t("Services.service3.description"),
             icon: "/assest/services/image 25.png",
             bgImage: "/assest/services/Rectangle 159.png",
             bgPosition: { top: "0", left: "6" }
         },
         {
-            title: t("Services.service4.title"), 
-            description:  t("Services.service4.description"),
+            title: t("Services.service4.title"),
+            description: t("Services.service4.description"),
             icon: "/assest/services/power-supply_1.png",
             bgImage: "/assest/services/Rectangle 160.png",
             bgPosition: { top: "2", left: "6" }
         }
     ];
 
+    useEffect(() => {
+        // Set up Intersection Observer
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true); // Set to true when section comes into view
+                }
+            },
+            { threshold: 0.2 } // Trigger when 20% of the section is visible
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current); // Observe the section element
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current); // Clean up observer
+            }
+        };
+    }, []);
+
+    const handleAnimationEnd = (e: React.AnimationEvent) => {
+        if (e.animationName === 'fadeInTop' || e.animationName === 'fadeUp') {
+            // Reset the animation class after the animation ends
+            e.currentTarget.classList.remove('animate-fadeInTop', 'animate-fadeUp');
+        }
+    };
+
     return (
-        <section className="py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] animate-fadeInTop">
+        <section
+            ref={sectionRef}
+            className={`py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] ${inView ? 'animate-fadeInTop' : ''}`}
+            onAnimationEnd={handleAnimationEnd}
+        >
             {/* Section Header */}
             <div className="text-center mb-12">
                 <p className="text-[22px] lg:text-[19px] 2xl:text-[18px] text-[#5E6282] font-poppins font-semibold mb-3">
@@ -62,8 +100,9 @@ const ServicesSection: React.FC = () => {
                 {services.map((service, index) => (
                     <div
                         key={index}
-                        className="w-[280px] md:w-[220px] lg:w-[220px] 2xl:min-w-[190px] desktop:w-[250px] desktop:hover:w-[260px] flex flex-col 
-                        items-center relative group animate-fadeUp"
+                        className={`w-[280px] md:w-[220px] lg:w-[220px] 2xl:min-w-[190px] desktop:w-[250px] desktop:hover:w-[260px] flex flex-col 
+                        items-center relative group ${inView ? 'animate-fadeUp' : ''}`}
+                        onAnimationEnd={handleAnimationEnd}
                     >
                         <section className="z-10 hover:bg-white rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:p-2 relative">
                             {/* Background image with dynamic position */}
