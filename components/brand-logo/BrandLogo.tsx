@@ -1,14 +1,48 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+
 export default function BrandLogos() {
   const brands = [
-    { name: 'Axon', logo: '/assest/brand-logo/image 31.png' },
-    { name: 'Jetstar', logo: '/assest/brand-logo/image 30.png' },
-    { name: 'Expedia', logo: '/assest/brand-logo/image 29.png' },
-    { name: 'Qantas', logo: '/assest/brand-logo/image 28.png' },
-    { name: 'Alitalia', logo: '/assest/brand-logo/image 27.png' },
+    { name: "Axon", logo: "/assest/brand-logo/image 31.png" },
+    { name: "Jetstar", logo: "/assest/brand-logo/image 30.png" },
+    { name: "Expedia", logo: "/assest/brand-logo/image 29.png" },
+    { name: "Qantas", logo: "/assest/brand-logo/image 28.png" },
+    { name: "Alitalia", logo: "/assest/brand-logo/image 27.png" },
   ];
 
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true); // Trigger animation
+          } else {
+            setIsVisible(false); // Reset animation
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
   return (
-    <div className="pb-32 pt-48 bg-white">
+    <div
+      ref={sectionRef}
+      className={`pb-32 pt-48 bg-white ${
+        isVisible ? "animate-fadeUp" : "opacity-0"
+      }`}
+    >
       <div className="max-w-screen">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           {brands.map((brand, index) => (
@@ -28,6 +62,7 @@ export default function BrandLogos() {
     </div>
   );
 }
+
 
 
   
