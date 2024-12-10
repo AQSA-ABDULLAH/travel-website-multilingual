@@ -29,7 +29,7 @@ export default function Home() {
         <ServicesSection />
         <Destinations />
       </div>
-      <div className="lg:pr-0 pr-6">
+      <div className="lg:pr-0 lg:mr-40">
         <BookTrip />
       </div>
       <div className="2xl:pr-40 lg:pr-32 pr-6">

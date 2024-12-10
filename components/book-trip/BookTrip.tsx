@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import TripCard from './TripCard';
 
 const BookTrip: React.FC = () => {
   const t = useTranslations();
@@ -16,7 +17,7 @@ const BookTrip: React.FC = () => {
   ];
 
   return (
-    <div className="lg:pt-0 pt-32">
+    <div className="my-28 lg:pt-0">
       <div className="max-w-screen flex flex-col justify-center lg:flex-row lg:items-center lg:justify-between">
         {/* Left Side */}
         <div className="lg:w-[48%] 2xl:w-[40%] desktop:w-[38%] lg:pr-12 desktop:pr-4">
@@ -54,11 +55,7 @@ const BookTrip: React.FC = () => {
 
         {/* Right Side */}
         <div className="lg:mt-4">
-          <img
-            src="/assest/book-section/Image.png"
-            alt={t("BookTrip.imageAlt")} 
-            className="w-[960px] lg:w-[750px] lg:h-[780px] 2xl:w-[1000px] 2xl:h-[1000px] desktop:w-[1000px] desktop:h-[1150px]"
-          />
+        <TripCard />
         </div>
       </div>
     </div>
