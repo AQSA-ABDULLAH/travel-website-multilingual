@@ -23,7 +23,7 @@ export default function Main() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 } // Reduce the threshold to allow more of the element to be visible before triggering animations
     );
 
     if (leftSectionRef.current) observer.observe(leftSectionRef.current);
