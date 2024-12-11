@@ -120,7 +120,7 @@ const Testimonials: React.FC = () => {
         {/* Right Section - Image Carousel */}
         <section
           ref={rightSectionRef}
-          className={`flex items-center justify-end mt-12 lg:mt-0 ${isRightVisible ? "animate-zoomInUp" : "opacity-0"
+          className={`flex items-center justify-end mt-12 lg:mt-0 ${isRightVisible ? "animate-fadeRightToLeft" : "opacity-0"
             }`}
         >
           <div className="relative">
