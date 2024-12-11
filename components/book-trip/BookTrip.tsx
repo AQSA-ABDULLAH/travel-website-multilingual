@@ -96,9 +96,7 @@ const BookTrip: React.FC = () => {
         {/* Right Side */}
         <div
           ref={rightSectionRef}
-          className={`lg:mt-4 ${
-            isRightVisible ? "animate-zoomInUp" : "opacity-0"
-          }`}
+          className={`lg:mt-4 ${isRightVisible ? "animate-zoomInUp" : "opacity-0"}`}
         >
           <TripCard />
         </div>
@@ -108,4 +106,5 @@ const BookTrip: React.FC = () => {
 };
 
 export default BookTrip;
+
 

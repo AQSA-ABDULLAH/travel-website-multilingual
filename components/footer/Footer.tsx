@@ -30,7 +30,7 @@ export default function Footer() {
   return (
     <footer
       id="footer-section"
-      className={`bg-white py-16 mt-16 ${isVisible ? "animate-fadeUp" : "opacity-0"}`}
+      className={`bg-white py-16 mt-16`}
     >
       <div className="max-w-screen">
         {/* Footer Content */}

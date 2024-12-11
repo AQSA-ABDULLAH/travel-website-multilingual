@@ -17,6 +17,7 @@ interface Service {
 const ServicesSection: React.FC = () => {
     const t = useTranslations(); // Fetch translations
     const [inView, setInView] = useState(false); // State to track if section is in view
+    const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down'); // Track scroll direction
     const sectionRef = useRef<HTMLDivElement>(null); // Reference to the section element
     const sectionHeaderRef = useRef<HTMLDivElement>(null); // Reference to section header
 
@@ -52,12 +53,32 @@ const ServicesSection: React.FC = () => {
     ];
 
     useEffect(() => {
+        // Track scroll direction
+        let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        const onScroll = () => {
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScrollTop > lastScrollTop) {
+                setScrollDirection('down'); // Scrolling down
+            } else {
+                setScrollDirection('up'); // Scrolling up
+            }
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // Prevent negative values
+        };
+
+        window.addEventListener('scroll', onScroll);
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+        };
+    }, []);
+
+    useEffect(() => {
         // Set up Intersection Observer
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    setInView(true); // Set to true when section comes into view
-                } else {
+                if (entry.isIntersecting && scrollDirection === 'down') {
+                    setInView(true); // Set to true when section comes into view and scrolling down
+                } else if (!entry.isIntersecting) {
                     setInView(false); // Reset when it goes out of view
                 }
             },
@@ -73,7 +94,7 @@ const ServicesSection: React.FC = () => {
                 observer.unobserve(sectionRef.current); // Clean up observer
             }
         };
-    }, []);
+    }, [scrollDirection]);
 
     const handleAnimationEnd = (e: React.AnimationEvent) => {
         if (e.animationName === 'fadeInTop' || e.animationName === 'fadeUp') {
@@ -85,17 +106,13 @@ const ServicesSection: React.FC = () => {
     return (
         <section
             ref={sectionRef}
-            className={`py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] ${
-                inView ? "animate-fadeInTop" : ""
-            }`}
+            className={`py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] ${inView ? "animate-fadeInTop" : ""}`}
             onAnimationEnd={handleAnimationEnd}
         >
             {/* Section Header */}
             <div
                 ref={sectionHeaderRef}
-                className={`text-center mb-12 ${
-                    inView ? "animate-fadeDown" : ""
-                }`}
+                className={`text-center mb-12 ${inView ? "animate-fadeDown" : ""}`}
                 onAnimationEnd={handleAnimationEnd}
             >
                 <p className="text-[22px] lg:text-[19px] 2xl:text-[18px] text-[#5E6282] font-poppins font-semibold mb-3">
@@ -166,3 +183,4 @@ const ServicesSection: React.FC = () => {
 };
 
 export default ServicesSection;
+

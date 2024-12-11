@@ -95,7 +95,7 @@ const config: Config = {
         fadeDown: 'fadeDown 1s ease-out forwards',
         fadeUp: 'fadeUp 1s ease-out forwards',
         fadeRight: 'fadeRight 1s ease-out forwards',
-        fadeRightToLeft: 'fadeRightToLeft 1s ease-out 0.5s forwards',
+        fadeRightToLeft: 'fadeRightToLeft 1s ease-out forwards',
         fadeLeftToRight: 'fadeLeftToRight 1s ease-out forwards',
         fadeInTop: 'fadeInTop 1s ease-out forwards',
         fadeInBottom: 'fadeInBottom 1s ease-out forwards',
