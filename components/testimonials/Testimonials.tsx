@@ -82,8 +82,6 @@ const Testimonials: React.FC = () => {
         {/* Left Section - Title and Heading */}
         <section
           ref={leftSectionRef}
-          className={`lg:w-[40%] ${isLeftVisible ? "animate-fadeInLeft" : "opacity-0"
-            }`}
         >
           {/* Subtitle with animation */}
           <h3
