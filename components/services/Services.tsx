@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 
 interface Service {
@@ -150,7 +150,7 @@ const ServicesSection: React.FC = () => {
                     </div>
                 ))}
             </div>
-        </section>
+       </section>
     );
 };
 

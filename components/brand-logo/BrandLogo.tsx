@@ -39,7 +39,7 @@ export default function BrandLogos() {
   return (
     <div
       ref={sectionRef}
-      className={`pb-32 pt-48 bg-white ${
+      className={`mb-32 mt-48 bg-white ${
         isVisible ? "animate-fadeUp" : "opacity-0"
       }`}
     >
@@ -62,7 +62,3 @@ export default function BrandLogos() {
     </div>
   );
 }
-
-
-
-  

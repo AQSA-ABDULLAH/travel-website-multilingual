@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 
 const Navbar = ({ locale }: { locale: string }) => {
   const t = useTranslations("NavbarLinks");
@@ -11,12 +11,38 @@ const Navbar = ({ locale }: { locale: string }) => {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Initially visible
+  const navbarRef = useRef<HTMLElement>(null);
 
   const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as string;
     const path = pathname.split("/").slice(2).join("/");
     router.push(`/${newLocale}/${path}`);
   };
+
+  // Observe when Navbar enters the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          console.log("Intersection State:", entry.isIntersecting); // Debug
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.1 }
+    );
+  
+    if (navbarRef.current) {
+      observer.observe(navbarRef.current);
+    }
+  
+    return () => {
+      if (navbarRef.current) {
+        observer.unobserve(navbarRef.current);
+      }
+    };
+  }, []);
+  
 
   useEffect(() => {
     if (isOpen) {
@@ -28,7 +54,13 @@ const Navbar = ({ locale }: { locale: string }) => {
   }, [isOpen]);
 
   return (
-    <header className="max-w-screen pt-12 flex justify-between items-center">
+    <header
+    ref={navbarRef}
+    className={`max-w-screen pt-12 flex justify-between items-center transition-all duration-500 ${
+      isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
+    }`}
+  >
+  
       {/* Logo Section */}
       <section>
         <div className="flex items-center space-x-2">
@@ -48,7 +80,7 @@ const Navbar = ({ locale }: { locale: string }) => {
 
         <div className="hidden md:block">
           <button className="2xl:text-[17px] border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white px-6 py-2 rounded-lg">
-          {t("signup")}
+            {t("signup")}
           </button>
         </div>
 
@@ -85,67 +117,12 @@ const Navbar = ({ locale }: { locale: string }) => {
           </button>
         </div>
       </section>
-
-      {/* Mobile Sidebar Menu */}
-      <div
-        className={`fixed top-0 right-0 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        } w-80 z-50`}
-      >
-        <button
-          className="absolute top-4 right-4 text-gray-800 hover:text-gray-600"
-          onClick={() => setIsOpen(false)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-        <nav className="flex flex-col mt-12 space-y-4 px-6">
-          <Link href={`/${locale}/`} className="text-gray-800">
-            {t("home")}
-          </Link>
-          <Link href={`/${locale}/about`} className="text-gray-800">
-            {t("about")}
-          </Link>
-          <Link href={`/${locale}/about/profile`} className="text-gray-800">
-            {t("profile")}
-          </Link>
-          <button className="bg-transparent border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white px-4 py-2 rounded-lg">
-            Sign up
-          </button>
-          <select
-            value={locale}
-            onChange={handleLanguageChange}
-            className="bg-transparent text-gray-800 border-2 border-gray-800 rounded-md p-2"
-          >
-            <option value="en">EN</option>
-            <option value="fr">FR</option>
-            <option value="es">ES</option>
-          </select>
-        </nav>
-      </div>
-
-      {/* Overlay to Close Sidebar */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black opacity-50 z-1000"
-          onClick={() => setIsOpen(false)}
-        ></div>
-      )}
     </header>
   );
 };
 
 export default Navbar;
+
+
+
 
