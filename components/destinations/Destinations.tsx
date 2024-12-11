@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from 'next-intl';
-import React from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useTranslations } from "next-intl";
+import React, { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 interface Destination {
     title: string;
@@ -15,7 +15,7 @@ const Destinations: React.FC = () => {
     const t = useTranslations();
     const { ref, inView } = useInView({
         triggerOnce: false, // Animation triggers every time the section comes into view
-        threshold: 0.1,    // Trigger animation when 10% of the section is visible
+        threshold: 0.8,    // Trigger animation when 10% of the section is visible
     });
 
     const destinations: Destination[] = [
@@ -39,22 +39,32 @@ const Destinations: React.FC = () => {
         },
     ];
 
+    const [visibleCards, setVisibleCards] = useState<number[]>([]);
+
+    useEffect(() => {
+        if (inView) {
+            destinations.forEach((_, index) => {
+                setTimeout(() => {
+                    setVisibleCards((prev) => [...prev, index]);
+                }, index * 800); // 2 seconds delay between cards
+            });
+        } else {
+            setVisibleCards([]); // Reset if the section goes out of view
+        }
+    }, [inView]);
+
     return (
         <section ref={ref} className="pt-28 bg-white mr-6 sm:mr-0">
             {/* Section Header */}
             <div
                 className={`container mx-auto text-center mb-12 ${
-                    inView ? 'animate-fadeDown' : 'opacity-0'
+                    inView ? "animate-fadeDown" : "opacity-0"
                 }`}
             >
-                <p
-                    className="text-[22px] sm:text-[28px] lg:text-[19px] 2xl:text-[18px] text-[#5E6282] font-poppins font-semibold mb-3"
-                >
+                <p className="text-[22px] sm:text-[28px] lg:text-[19px] 2xl:text-[18px] text-[#5E6282] font-poppins font-semibold mb-3">
                     {t("Destinations.subtitle")}
                 </p>
-                <h2
-                    className="text-[38px] sm:text-[48px] lg:text-[40px] 2xl:text-[50px] md:text-[48px] lg:text-[53px] text-[#14183E] font-volkhov font-bold pb-6"
-                >
+                <h2 className="text-[38px] sm:text-[48px] lg:text-[40px] 2xl:text-[50px] md:text-[48px] lg:text-[53px] text-[#14183E] font-volkhov font-bold pb-6">
                     {t("Destinations.title")}
                 </h2>
             </div>
@@ -65,11 +75,10 @@ const Destinations: React.FC = () => {
                     <div
                         key={index}
                         className={`w-[280px] sm:w-[400px] lg:w-[320px] xl:w-[290px] 2xl:w-[314px] desktop:w-[420px] bg-white shadow-md rounded-2xl overflow-hidden ${
-                            inView ? 'animate-fadeUp' : 'opacity-0'
+                            visibleCards.includes(index) ? "animate-fadeUp" : "opacity-0"
                         }`}
                         style={{
-                            animationDelay: `${index * 0.8}s`, // 0.5s delay for each card
-                            animationDuration: '0.8s', // Duration for fade-up effect
+                            animationDuration: "0.8s", // Duration for fade-up effect
                         }}
                     >
                         {/* Image */}
@@ -106,3 +115,4 @@ const Destinations: React.FC = () => {
 };
 
 export default Destinations;
+

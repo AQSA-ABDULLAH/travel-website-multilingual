@@ -87,7 +87,6 @@ const Testimonials: React.FC = () => {
           <h3
             className={`text-[18px] 2xl:text-[24px] text-[#5E6282] font-poppins font-semibold mb-2 tracking-wider ${isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"
               }`}
-            style={{ animationDelay: "0.2s" }} // Optional delay
           >
             {t("testimonials.subtitle")}
           </h3>
@@ -96,7 +95,6 @@ const Testimonials: React.FC = () => {
           <h2
             className={`text-[38px] sm:text-[49px] lg:text-[53px] 2xl:text-[63px] desktop:text-[74px] text-[#14183E] font-volkhov font-bold mb-6 ${isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"
               }`}
-            style={{ animationDelay: "0.4s" }} // Optional delay
           >
             {t("testimonials.title")}
           </h2>
