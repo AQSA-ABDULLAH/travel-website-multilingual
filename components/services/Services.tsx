@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 interface Service {
@@ -18,6 +18,7 @@ const ServicesSection: React.FC = () => {
     const t = useTranslations(); // Fetch translations
     const [inView, setInView] = useState(false); // State to track if section is in view
     const sectionRef = useRef<HTMLDivElement>(null); // Reference to the section element
+    const sectionHeaderRef = useRef<HTMLDivElement>(null); // Reference to section header
 
     const services: Service[] = [
         {
@@ -56,6 +57,8 @@ const ServicesSection: React.FC = () => {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setInView(true); // Set to true when section comes into view
+                } else {
+                    setInView(false); // Reset when it goes out of view
                 }
             },
             { threshold: 0.2 } // Trigger when 20% of the section is visible
@@ -82,11 +85,19 @@ const ServicesSection: React.FC = () => {
     return (
         <section
             ref={sectionRef}
-            className={`py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] ${inView ? 'animate-fadeInTop' : ''}`}
+            className={`py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] ${
+                inView ? "animate-fadeInTop" : ""
+            }`}
             onAnimationEnd={handleAnimationEnd}
         >
             {/* Section Header */}
-            <div className="text-center mb-12">
+            <div
+                ref={sectionHeaderRef}
+                className={`text-center mb-12 ${
+                    inView ? "animate-fadeDown" : ""
+                }`}
+                onAnimationEnd={handleAnimationEnd}
+            >
                 <p className="text-[22px] lg:text-[19px] 2xl:text-[18px] text-[#5E6282] font-poppins font-semibold mb-3">
                     {t("Services.category")} {/* Dynamic category */}
                 </p>
@@ -150,12 +161,8 @@ const ServicesSection: React.FC = () => {
                     </div>
                 ))}
             </div>
-       </section>
+        </section>
     );
 };
 
 export default ServicesSection;
-
-
-
-

@@ -35,6 +35,8 @@
     }
   },
   "Destinations": {
+    "subtitle": "Top Selling",
+    "title": "Top Destinations",
     "destination1": {
       "title": "Rome, Italy",
       "duration": "10 Days Trip"
