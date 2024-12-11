@@ -16,8 +16,8 @@ interface Service {
 
 const ServicesSection: React.FC = () => {
     const t = useTranslations(); // Fetch translations
-    const [inView, setInView] = useState(false); // State to track if section is in view
     const [visibleCards, setVisibleCards] = useState<number[]>([]); // Track visible cards
+    const [hasAnimated, setHasAnimated] = useState(false); // Track if animation has occurred
     const sectionRef = useRef<HTMLDivElement>(null); // Reference to the section element
 
     const services: Service[] = [
@@ -55,8 +55,14 @@ const ServicesSection: React.FC = () => {
         // Set up Intersection Observer
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    setInView(true); // Trigger animation when in view
+                if (entry.isIntersecting && !hasAnimated) {
+                    // Trigger animation only once
+                    setHasAnimated(true);
+                    services.forEach((_, index) => {
+                        setTimeout(() => {
+                            setVisibleCards((prev) => [...prev, index]);
+                        }, index * 500); // Delay each card by 500ms
+                    });
                 }
             },
             { threshold: 0.2 }
@@ -71,17 +77,7 @@ const ServicesSection: React.FC = () => {
                 observer.unobserve(sectionRef.current);
             }
         };
-    }, []);
-
-    useEffect(() => {
-        if (inView) {
-            services.forEach((_, index) => {
-                setTimeout(() => {
-                    setVisibleCards((prev) => [...prev, index]); // Reveal cards one by one
-                }, index * 500); // Delay each card by 500ms
-            });
-        }
-    }, [inView]);
+    }, [services, hasAnimated]);
 
     return (
         <section
@@ -159,3 +155,8 @@ const ServicesSection: React.FC = () => {
 };
 
 export default ServicesSection;
+
+
+
+
+
