@@ -49,13 +49,12 @@ const BookTrip: React.FC = () => {
         {/* Left Side */}
         <div
           ref={leftSectionRef}
-          className={`lg:w-[48%] 2xl:w-[40%] desktop:w-[38%] lg:pr-12 desktop:pr-4`}
+          className="lg:w-[48%] 2xl:w-[40%] desktop:w-[38%] lg:pr-12 desktop:pr-4"
         >
           {/* Animated Subtitle */}
           <h3
             className={`text-[28px] sm:text-[35px] lg:text-[20px] 2xl:text-[18px] desktop:text-[28px] text-[#5E6282] 
-  font-poppins font-semibold lg:mb-2 ${isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"
-              }`}
+            font-poppins font-semibold lg:mb-2 ${isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"}`}
           >
             {t("BookTrip.subtitle")}
           </h3>
@@ -63,9 +62,7 @@ const BookTrip: React.FC = () => {
           {/* Animated Title */}
           <h2
             className={`text-[32px] sm:text-[60px] lg:text-[53px] 2xl:text-[56px] desktop:text-[65px] text-[#14183E] 
-  font-volkhov font-bold mb-6 ${isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"
-              }`}
-              
+            font-volkhov font-bold mb-6 ${isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"}`}
           >
             {t("BookTrip.title")}
           </h2>
@@ -75,8 +72,7 @@ const BookTrip: React.FC = () => {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className={`flex flex-col sm:flex-row text-center sm:text-start items-center gap-3 sm:gap-6 ${isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"
-                  }`}
+                className={`flex flex-col sm:flex-row text-center sm:text-start items-center gap-3 sm:gap-6 ${isLeftVisible ? "animate-fadeLeftToRight opacity-100" : "opacity-50"}`}
                 style={{ animationDelay: `${index * 0.5}s` }}
               >
                 <div className="flex items-center justify-center rounded-lg mt-6 sm:mt-0">
@@ -112,5 +108,6 @@ const BookTrip: React.FC = () => {
 };
 
 export default BookTrip;
+
 
 
