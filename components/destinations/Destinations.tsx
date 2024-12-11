@@ -64,7 +64,13 @@ const Destinations: React.FC = () => {
                 {destinations.map((destination, index) => (
                     <div
                         key={index}
-                        className="w-[280px] sm:w-[400px] lg:w-[320px] xl:w-[290px] 2xl:w-[314px] desktop:w-[420px] bg-white shadow-md rounded-2xl overflow-hidden"
+                        className={`w-[280px] sm:w-[400px] lg:w-[320px] xl:w-[290px] 2xl:w-[314px] desktop:w-[420px] bg-white shadow-md rounded-2xl overflow-hidden ${
+                            inView ? 'animate-fadeUp' : 'opacity-0'
+                        }`}
+                        style={{
+                            animationDelay: `${index * 0.5}s`, // 0.5s delay for each card
+                            animationDuration: '0.8s', // Duration for fade-up effect
+                        }}
                     >
                         {/* Image */}
                         <img
@@ -100,4 +106,3 @@ const Destinations: React.FC = () => {
 };
 
 export default Destinations;
-
