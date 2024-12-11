@@ -15,7 +15,7 @@ const Destinations: React.FC = () => {
     const t = useTranslations();
     const { ref, inView } = useInView({
         triggerOnce: false, // Animation triggers every time the section comes into view
-        threshold: 0.8,    // Trigger animation when 10% of the section is visible
+        threshold: 0.1,    // Trigger animation when 10% of the section is visible
     });
 
     const destinations: Destination[] = [
