@@ -68,7 +68,7 @@ const Destinations: React.FC = () => {
                             inView ? 'animate-fadeUp' : 'opacity-0'
                         }`}
                         style={{
-                            animationDelay: `${index * 0.5}s`, // 0.5s delay for each card
+                            animationDelay: `${index * 0.8}s`, // 0.5s delay for each card
                             animationDuration: '0.8s', // Duration for fade-up effect
                         }}
                     >
