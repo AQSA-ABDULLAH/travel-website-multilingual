@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface Service {
     title: string;
@@ -17,9 +17,8 @@ interface Service {
 const ServicesSection: React.FC = () => {
     const t = useTranslations(); // Fetch translations
     const [inView, setInView] = useState(false); // State to track if section is in view
-    const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down'); // Track scroll direction
+    const [visibleCards, setVisibleCards] = useState<number[]>([]); // Track visible cards
     const sectionRef = useRef<HTMLDivElement>(null); // Reference to the section element
-    const sectionHeaderRef = useRef<HTMLDivElement>(null); // Reference to section header
 
     const services: Service[] = [
         {
@@ -53,73 +52,49 @@ const ServicesSection: React.FC = () => {
     ];
 
     useEffect(() => {
-        // Track scroll direction
-        let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        const onScroll = () => {
-            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (currentScrollTop > lastScrollTop) {
-                setScrollDirection('down'); // Scrolling down
-            } else {
-                setScrollDirection('up'); // Scrolling up
-            }
-            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // Prevent negative values
-        };
-
-        window.addEventListener('scroll', onScroll);
-        return () => {
-            window.removeEventListener('scroll', onScroll);
-        };
-    }, []);
-
-    useEffect(() => {
         // Set up Intersection Observer
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && scrollDirection === 'down') {
-                    setInView(true); // Set to true when section comes into view and scrolling down
-                } else if (!entry.isIntersecting) {
-                    setInView(false); // Reset when it goes out of view
+                if (entry.isIntersecting) {
+                    setInView(true); // Trigger animation when in view
                 }
             },
-            { threshold: 0.2 } // Trigger when 20% of the section is visible
+            { threshold: 0.2 }
         );
 
         if (sectionRef.current) {
-            observer.observe(sectionRef.current); // Observe the section element
+            observer.observe(sectionRef.current);
         }
 
         return () => {
             if (sectionRef.current) {
-                observer.unobserve(sectionRef.current); // Clean up observer
+                observer.unobserve(sectionRef.current);
             }
         };
-    }, [scrollDirection]);
+    }, []);
 
-    const handleAnimationEnd = (e: React.AnimationEvent) => {
-        if (e.animationName === 'fadeInTop' || e.animationName === 'fadeUp') {
-            // Reset the animation class after the animation ends
-            e.currentTarget.classList.remove('animate-fadeInTop', 'animate-fadeUp');
+    useEffect(() => {
+        if (inView) {
+            services.forEach((_, index) => {
+                setTimeout(() => {
+                    setVisibleCards((prev) => [...prev, index]); // Reveal cards one by one
+                }, index * 500); // Delay each card by 500ms
+            });
         }
-    };
+    }, [inView]);
 
     return (
         <section
             ref={sectionRef}
-            className={`py-10 mr-4 sm:mr-0 relative xl:min-h-[560px] ${inView ? "animate-fadeInTop" : ""}`}
-            onAnimationEnd={handleAnimationEnd}
+            className="py-10 mr-4 sm:mr-0 relative xl:min-h-[560px]"
         >
             {/* Section Header */}
-            <div
-                ref={sectionHeaderRef}
-                className={`text-center mb-12 ${inView ? "animate-fadeDown" : ""}`}
-                onAnimationEnd={handleAnimationEnd}
-            >
+            <div className="text-center mb-12">
                 <p className="text-[22px] lg:text-[19px] 2xl:text-[18px] text-[#5E6282] font-poppins font-semibold mb-3">
-                    {t("Services.category")} {/* Dynamic category */}
+                    {t("Services.category")}
                 </p>
                 <h2 className="text-[38px] sm:text-[45px] lg:text-[32px] 2xl:text-[50px] desktop:text-[50px] md:text-[48px] lg:text-[53px] text-[#14183E] font-volkhov font-bold pb-14">
-                    {t("Services.title")} {/* Dynamic title */}
+                    {t("Services.title")}
                 </h2>
             </div>
 
@@ -129,8 +104,9 @@ const ServicesSection: React.FC = () => {
                     <div
                         key={index}
                         className={`w-[280px] md:w-[220px] lg:w-[220px] 2xl:min-w-[190px] desktop:w-[250px] desktop:hover:w-[260px] flex flex-col 
-                        items-center relative group ${inView ? 'animate-fadeUp' : ''}`}
-                        onAnimationEnd={handleAnimationEnd}
+                        items-center relative group transition-all duration-300 ${
+                            visibleCards.includes(index) ? "animate-fadeUp" : "opacity-0"
+                        }`}
                     >
                         <section className="z-10 hover:bg-white rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:p-2 relative">
                             {/* Background image with dynamic position */}
@@ -183,4 +159,3 @@ const ServicesSection: React.FC = () => {
 };
 
 export default ServicesSection;
-

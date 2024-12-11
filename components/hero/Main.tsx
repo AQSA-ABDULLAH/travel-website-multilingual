@@ -83,7 +83,7 @@ export default function Main() {
               }`}
           >
             <button
-              className={`text-white hover:bg-orange-600 text-[18px] 2xl:text-[30px] bg-[#F1A501] px-6 py-4 rounded-lg sm:mr-4`}
+              className={`text-white hover:bg-orange-600 text-[18px] 2xl:text-[20px] bg-[#F1A501] px-6 py-4 rounded-lg sm:mr-4`}
             >
               {t("button1")}
             </button>
@@ -91,7 +91,7 @@ export default function Main() {
               <img
                 src="/assest/hero/Play Demo.png"
                 alt="Play Demo"
-                className={`w-[150px] sm:w-full 2xl:w-[300px]`}
+                className={`w-[100px] sm:w-full 2xl:w-[200px]`}
               />
             </button>
           </div>
