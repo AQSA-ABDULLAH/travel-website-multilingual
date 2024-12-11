@@ -50,7 +50,7 @@ const BookTrip: React.FC = () => {
         <div
           ref={leftSectionRef}
           className={`lg:w-[48%] 2xl:w-[40%] desktop:w-[38%] lg:pr-12 desktop:pr-4 ${
-            isLeftVisible ? "animate-fadeInLeft" : "opacity-0"
+            isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"
           }`}
         >
           {/* Animated Subtitle */}
@@ -69,7 +69,7 @@ const BookTrip: React.FC = () => {
               <div
                 key={index}
                 className={`flex flex-col sm:flex-row text-center sm:text-start items-center gap-3 sm:gap-6 ${
-                  isLeftVisible ? "animate-fadeUp" : "opacity-0"
+                  isLeftVisible ? "animate-fadeLeftToRight" : "opacity-0"
                 }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
@@ -108,3 +108,4 @@ const BookTrip: React.FC = () => {
 };
 
 export default BookTrip;
+
