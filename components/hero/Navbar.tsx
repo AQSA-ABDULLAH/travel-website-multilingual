@@ -11,8 +11,9 @@ const Navbar = ({ locale }: { locale: string }) => {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true); // Initially visible
-  const navbarRef = useRef<HTMLElement>(null);
+
+
+
 
   const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as string;
@@ -20,57 +21,22 @@ const Navbar = ({ locale }: { locale: string }) => {
     router.push(`/${newLocale}/${path}`);
   };
 
-  // Observe when Navbar enters the viewport
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.log("Intersection State:", entry.isIntersecting); // Debug
-          setIsVisible(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.1 }
-    );
-  
-    if (navbarRef.current) {
-      observer.observe(navbarRef.current);
-    }
-  
-    return () => {
-      if (navbarRef.current) {
-        observer.unobserve(navbarRef.current);
-      }
-    };
-  }, []);
-  
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-    return () => document.body.classList.remove("overflow-hidden");
-  }, [isOpen]);
-
   return (
-    <header
-    ref={navbarRef}
-    className={`max-w-screen pt-12 flex justify-between items-center transition-all duration-500 ${
-      isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
-    }`}
-  >
-  
+    <header className="max-w-screen pt-12 flex justify-between items-center transition-all duration-500">
       {/* Logo Section */}
       <section>
-        <div className="flex items-center space-x-2">
+        <div
+          className={`flex items-center space-x-2 animate-fadeLeftToRight`}
+        >
           <img src="/assest/Logo.png" className="2xl:w-[114px]" alt="Logo" />
         </div>
       </section>
 
       {/* Navigation Links */}
       <section className="flex justify-between items-center gap-6">
-        <nav className="text-[18px] 2xl:text-[17px] text-[#212832] font-Google Sans font-medium hidden md:flex space-x-16">
+        <nav
+          className={`text-[18px] 2xl:text-[17px] text-[#212832] font-Google Sans font-medium hidden md:flex space-x-16 animate-fadeDown`}
+        >
           <a href="#">{t("destinations")}</a>
           <a href="#">{t("hotels")}</a>
           <a href="#">{t("flights")}</a>
@@ -122,6 +88,7 @@ const Navbar = ({ locale }: { locale: string }) => {
 };
 
 export default Navbar;
+
 
 
 

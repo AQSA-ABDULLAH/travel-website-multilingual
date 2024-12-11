@@ -8,48 +8,21 @@ export default function Main() {
 
   const leftSectionRef = useRef(null);
   const rightSectionRef = useRef(null);
-  const [isLeftVisible, setIsLeftVisible] = useState(false);
-  const [isRightVisible, setIsRightVisible] = useState(false);
   const [animationStage, setAnimationStage] = useState(0); // Track animation progress
 
+  // Animation triggered on initial mount
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === leftSectionRef.current) {
-            setIsLeftVisible(entry.isIntersecting);
-          }
-          if (entry.target === rightSectionRef.current) {
-            setIsRightVisible(entry.isIntersecting);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+    const timeouts = [
+      setTimeout(() => setAnimationStage(1), 500),
+      setTimeout(() => setAnimationStage(2), 1500),
+      setTimeout(() => setAnimationStage(3), 2500),
+      setTimeout(() => setAnimationStage(4), 3500),
+      setTimeout(() => setAnimationStage(5), 4500),
+    ];
 
-    if (leftSectionRef.current) observer.observe(leftSectionRef.current);
-    if (rightSectionRef.current) observer.observe(rightSectionRef.current);
-
-    return () => {
-      if (leftSectionRef.current) observer.unobserve(leftSectionRef.current);
-      if (rightSectionRef.current) observer.unobserve(rightSectionRef.current);
-    };
+    // Cleanup timeouts on unmount or re-render
+    return () => timeouts.forEach(clearTimeout);
   }, []);
-
-  useEffect(() => {
-    if (isLeftVisible) {
-      const timeouts = [
-        setTimeout(() => setAnimationStage(1), 500),
-        setTimeout(() => setAnimationStage(2), 1500),
-        setTimeout(() => setAnimationStage(3), 2500),
-        setTimeout(() => setAnimationStage(4), 3500),
-        setTimeout(() => setAnimationStage(5), 4500),
-      ];
-
-      // Cleanup timeouts on unmount or re-render
-      return () => timeouts.forEach(clearTimeout);
-    }
-  }, [isLeftVisible]);
 
   return (
     <div className="sm:min-h-screen flex items-center justify-center py-24 sm:py-16">
@@ -60,27 +33,31 @@ export default function Main() {
           className={`w-full md:w-[55%] 2xl:w-[600px] lg:w-[55%] flex flex-col lg:items-start items-center text-center lg:text-left`}
         >
           <span
-            className={`text-[14px] sm:text-[22px] lg:text-[20px] 2xl:text-[24px] text-[#DF6951] uppercase font-semibold mb-8 ${animationStage >= 1 ? "animate-fadeLeftToRight" : "opacity-0"
-              }`}
+            className={`text-[14px] sm:text-[22px] lg:text-[20px] 2xl:text-[24px] text-[#DF6951] uppercase font-semibold mb-8 ${
+              animationStage >= 1 ? "animate-fadeLeftToRight" : "opacity-0"
+            }`}
           >
             {t("heading")}
           </span>
           <h1
-            className={`text-[32px] px-20 sm:px-0 sm:text-[88px] lg:text-[96px] 2xl:text-[84px] text-center lg:text-left text-[#181E4B] font-volkhov font-black leading-tight sm:leading-loose 2xl:leading-large-loose desktop:leading-extra-loose mb-8 z-10 ${animationStage >= 2 ? "animate-fadeLeftToRight" : "opacity-0"
-              }`}
+            className={`text-[32px] px-20 sm:px-0 sm:text-[88px] lg:text-[96px] 2xl:text-[84px] text-center lg:text-left text-[#181E4B] font-volkhov font-black leading-tight sm:leading-loose 2xl:leading-large-loose desktop:leading-extra-loose mb-8 z-10 ${
+              animationStage >= 2 ? "animate-fadeLeftToRight" : "opacity-0"
+            }`}
           >
             {t("title")}
           </h1>
           <p
-            className={`text-[12px] px-20 sm:px-0 sm:text-[20px] lg:text-[17px] 2xl:text-[16px] desktop:text-[22px] text-[#5E6282] w-[480px] 2xl:w-[600px] desktop:w-[800px] tracking-wider font-medium mb-6 ${animationStage >= 3 ? "animate-fadeLeftToRight" : "opacity-0"
-              }`}
+            className={`text-[12px] px-20 sm:px-0 sm:text-[20px] lg:text-[17px] 2xl:text-[16px] desktop:text-[22px] text-[#5E6282] w-[480px] 2xl:w-[600px] desktop:w-[800px] tracking-wider font-medium mb-6 ${
+              animationStage >= 3 ? "animate-fadeLeftToRight" : "opacity-0"
+            }`}
           >
             {t("paragraph")}
           </p>
 
           <div
-            className={`flex flex-col sm:flex-row items-center ${animationStage >= 4 ? "animate-fadeInBottom" : "opacity-0"
-              }`}
+            className={`flex flex-col sm:flex-row items-center ${
+              animationStage >= 4 ? "animate-fadeInBottom" : "opacity-0"
+            }`}
           >
             <button
               className={`text-white hover:bg-orange-600 text-[18px] 2xl:text-[20px] bg-[#F1A501] px-6 py-4 rounded-lg sm:mr-4`}
@@ -100,9 +77,9 @@ export default function Main() {
         {/* Right Section */}
         <div
           ref={rightSectionRef}
-          className={`mt-12 md:mt-0 md:w-[45%] 2xl:w-[58%] hidden sm:block flex items-center justify-end 
-            ${animationStage >= 5 ? "animate-fadeRightToLeft" : "opacity-0"
-            }`}
+          className={`mt-12 md:mt-0 md:w-[45%] 2xl:w-[58%] hidden sm:block flex items-center justify-end ${
+            animationStage >= 5 ? "animate-fadeRightToLeft" : "opacity-0"
+          }`}
         >
           <img
             src="/assest/hero/Image.png"
@@ -114,3 +91,8 @@ export default function Main() {
     </div>
   );
 }
+
+
+
+
+
