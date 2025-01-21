@@ -1,8 +1,15 @@
-
+import type { Metadata } from "next";
 import Hero from "@/components/hero/Hero";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+
+export const metadata: Metadata = {
+  title: {default: "TRAVELLING WEBSITE",
+    template: "%s - TRAVEL WEBSITE"
+  },
+  description: "Travel with us",
+};
 
 export default async function RootLayout({
   children,

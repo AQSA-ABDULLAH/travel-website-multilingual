@@ -39,24 +39,5 @@ export default function Home() {
         <Footer />
       </div>
     </div>
-
-    // <div className="overflow-x-hidden">
-    // <div className="2xl:pl-40 lg:pl-32 pl-6">
-    //   <Hero />
-    //   <div className="2xl:pr-40 lg:pr-32 sm:pr-6">
-    //     <ServicesSection />
-    //     <Destinations />
-    //   </div>
-    //   <div className="lg:pr-0 pr-6">
-    //     <BookTrip />
-    //   </div>
-    //   <div className="2xl:pr-40 lg:pr-32 pr-6">
-    //     <Testimonials />
-    //     <BrandLogos />
-    //     <SubscribeSection />
-    //     <Footer />
-    //   </div>
-    // </div>
-    // </div>
   );
 }
